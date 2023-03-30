@@ -46,12 +46,15 @@ import {DeckungCComponent} from "./deckungC/deckung-c.component";
       {path: 'aufsicht', component: AufsichtComponent, pathMatch: "full"},
 
       {path: 'deckunga', redirectTo: 'deckungA', pathMatch: "full"},
-      {path: 'deckungA', component: DeckungAComponent, pathMatch: "full"},
-      {path: 'deckungb', redirectTo: 'deckungb', pathMatch: "full"},
-      {path: 'deckungB', component: DeckungBComponent, pathMatch: "full"},
+      {path: 'deckungb', redirectTo: 'deckungB', pathMatch: "full"},
       {path: 'deckungc', redirectTo: 'deckungC', pathMatch: "full"},
-
+      {path: 'deckungA', component: DeckungAComponent, pathMatch: "full"},
+      {path: 'deckungB', component: DeckungBComponent, pathMatch: "full"},
       {path: 'deckungC', component: DeckungCComponent, pathMatch: "full"},
+
+      {path: 'schreibera', redirectTo: 'schreiberA', pathMatch: "full"},
+      {path: 'schreiberb', redirectTo: 'schreiberB', pathMatch: "full"},
+      {path: 'schreiberc', redirectTo: 'schreiberC', pathMatch: "full"},
       {path: 'schreiberA', component: SchreiberAComponent, pathMatch: "full"},
       {path: 'schreiberB', component: SchreiberBComponent, pathMatch: "full"},
       {path: 'schreiberC', component: SchreiberCComponent, pathMatch: "full"}
