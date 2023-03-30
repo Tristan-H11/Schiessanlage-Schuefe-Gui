@@ -1,1 +1,17 @@
-<p>aufsicht works!</p>
+<form [formGroup]="form">
+  <div>
+    <label>Bahn A</label>
+    <input type="number" formControlName="a" [(ngModel)]="data.a">
+    <button (click)="setA()">Setzen</button>
+  </div>
+  <div>
+    <label>Bahn B</label>
+    <input type="number" formControlName="b" [(ngModel)]="data.b">
+    <button (click)="setB()">Setzen</button>
+  </div>
+  <div>
+    <label>Bahn C</label>
+    <input type="number" formControlName="c" [(ngModel)]="data.c">
+    <button (click)="setC()">Setzen</button>
+  </div>
+</form>

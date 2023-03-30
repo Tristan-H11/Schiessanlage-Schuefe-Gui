@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeckungComponent } from './deckung.component';
+import { DeckungCComponent } from './deckung-c.component';
 
 describe('DeckungComponent', () => {
-  let component: DeckungComponent;
-  let fixture: ComponentFixture<DeckungComponent>;
+  let component: DeckungCComponent;
+  let fixture: ComponentFixture<DeckungCComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeckungComponent ]
+      declarations: [ DeckungCComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeckungComponent);
+    fixture = TestBed.createComponent(DeckungCComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

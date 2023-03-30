@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {map, Observable, share, Subject} from 'rxjs';
 import {IMessage, RxStomp} from '@stomp/rx-stomp';
 import {BahnDTO} from "./bahn-d-t-o";
+import {AufsichtDTO} from "./aufsicht-d-t-o";
 
 
 @Injectable({
@@ -12,25 +13,32 @@ export class NotifierService {
   public updateOnA: Observable<BahnDTO> = new Subject();
   public updateOnB: Observable<BahnDTO> = new Subject();
   public updateOnC: Observable<BahnDTO> = new Subject();
+  public updateAufsicht: Observable<AufsichtDTO> = new Subject();
 
   constructor(private stomp: RxStomp) {
     this.updateOnA = stomp.watch("/anClient/updateOnA")
       .pipe(
         map((message: IMessage) => JSON.parse(message.body)),
         share({resetOnRefCountZero: true})
-      )
+      );
 
     this.updateOnB = stomp.watch("/anClient/updateOnB")
       .pipe(
         map((message: IMessage) => JSON.parse(message.body)),
         share({resetOnRefCountZero: true})
-      )
+      );
 
     this.updateOnC = stomp.watch("/anClient/updateOnC")
       .pipe(
         map((message: IMessage) => JSON.parse(message.body)),
         share({resetOnRefCountZero: true})
-      )
+      );
+
+    this.updateAufsicht = stomp.watch("/anClient/refreshAufsicht")
+      .pipe(
+        map((message: IMessage) => JSON.parse(message.body)),
+        share({resetOnRefCountZero: true})
+      );
   }
 
   public sendShotToA(message: string): void {
@@ -91,6 +99,22 @@ export class NotifierService {
 
   public closeC(): void {
     this.send("", "/anServer/closeC");
+  }
+
+  public aufsichtSetA(value: number): void {
+    this.send(String(value), "/anServer/aufsichtSetA");
+  }
+
+  public aufsichtSetB(value: number): void {
+    this.send(String(value), "/anServer/aufsichtSetB");
+  }
+
+  public aufsichtSetC(value: number): void {
+    this.send(String(value), "/anServer/aufsichtSetC");
+  }
+
+  public refreshAufsicht(): void {
+    this.send("", "/anServer/refreshAufsicht");
   }
 
   private send(message: string, destination: string): void {
