@@ -21,6 +21,7 @@ import {DeckungCModule} from "./deckungC/deckung-c.module";
 import {DeckungAComponent} from "./deckungA/deckung-a.component";
 import {DeckungBComponent} from "./deckungB/deckung-b.component";
 import {DeckungCComponent} from "./deckungC/deckung-c.component";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import {DeckungCComponent} from "./deckungC/deckung-c.component";
       {path: 'schreiberB', component: SchreiberBComponent, pathMatch: "full"},
       {path: 'schreiberC', component: SchreiberCComponent, pathMatch: "full"}
     ]),
+    NoopAnimationsModule,
   ],
   providers: [
     {
