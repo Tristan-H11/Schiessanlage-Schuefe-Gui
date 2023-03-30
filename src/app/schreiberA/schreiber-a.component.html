@@ -1,0 +1,16 @@
+<div class="toolbar" role="banner">
+  <h1>Bahn A</h1>
+</div>
+
+<div class="content" role="main">
+  <form [formGroup]="form" (ngSubmit)="sendMessage()">
+    <input type="text" formControlName="message">
+    <button type="submit">submit</button>
+    <span>{{lastUserMessage | json}}</span>
+  </form>
+  <ul>
+    <li *ngFor="let m of messages">{{m | json}}</li>
+  </ul>
+  <button (click)="subscribe()">connect</button>
+  <button (click)="disconnect()">disconnect</button>
+</div>

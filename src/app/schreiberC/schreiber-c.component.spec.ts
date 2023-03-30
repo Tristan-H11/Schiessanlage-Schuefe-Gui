@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SchreiberComponent } from './schreiber.component';
+import { SchreiberCComponent } from './schreiber-c.component';
 
 describe('SchreiberComponent', () => {
-  let component: SchreiberComponent;
-  let fixture: ComponentFixture<SchreiberComponent>;
+  let component: SchreiberCComponent;
+  let fixture: ComponentFixture<SchreiberCComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SchreiberComponent ]
+      declarations: [ SchreiberCComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SchreiberComponent);
+    fixture = TestBed.createComponent(SchreiberCComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
