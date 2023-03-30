@@ -16,8 +16,7 @@ export class SchreiberAComponent implements OnDestroy{
     'message': new FormControl()
   })
 
-  messages: string[] = [];
-  public lastUserMessage: string = "";
+  data: BahnDTO = new BahnDTO();
 
   public disconnect$: Subject<boolean> = new Subject();
 
@@ -28,10 +27,29 @@ export class SchreiberAComponent implements OnDestroy{
   public subscribe(): void {
     this.notifierService.updateOnA
       .pipe(takeUntil(this.disconnect$))
-      .subscribe((dto: number) => {
-        this.messages.push(String(dto));
-        console.log(this.messages)
+      .subscribe((dto: BahnDTO) => {
+        this.data = new BahnDTO(dto);
       })
+
+    // Request für die initialen Daten
+    this.notifierService.sendShotToA("treffer");
+  }
+
+
+  public alertOn(): void {
+    this.notifierService.alertOnA();
+  }
+
+  public alertOff(): void {
+    this.notifierService.alertOffA();
+  }
+
+  public open(): void {
+    this.notifierService.openA();
+  }
+
+  public close(): void {
+    this.notifierService.closeA();
   }
 
   public disconnect(): void{

@@ -2,6 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {NotifierService} from '../notifier-service.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subject, takeUntil} from 'rxjs';
+import {BahnDTO} from "../bahn-d-t-o";
 
 
 @Component({
@@ -15,8 +16,7 @@ export class SchreiberCComponent implements OnDestroy{
     'message': new FormControl()
   })
 
-  messages: string[] = [];
-  public lastUserMessage: string = "";
+  data: BahnDTO = new BahnDTO();
 
   public disconnect$: Subject<boolean> = new Subject();
 
@@ -27,10 +27,29 @@ export class SchreiberCComponent implements OnDestroy{
   public subscribe(): void {
     this.notifierService.updateOnC
       .pipe(takeUntil(this.disconnect$))
-      .subscribe((dto: number) => {
-        this.messages.push(String(dto));
-        console.log(this.messages)
+      .subscribe((dto: BahnDTO) => {
+        this.data = new BahnDTO(dto);
       })
+
+    // Request für die initialen Daten
+    this.notifierService.sendShotToC("treffer");
+  }
+
+
+  public alertOn(): void {
+    this.notifierService.alertOnC();
+  }
+
+  public alertOff(): void {
+    this.notifierService.alertOffC();
+  }
+
+  public open(): void {
+    this.notifierService.openC();
+  }
+
+  public close(): void {
+    this.notifierService.closeC();
   }
 
   public disconnect(): void{
@@ -40,7 +59,6 @@ export class SchreiberCComponent implements OnDestroy{
   public sendMessage(): void {
     this.notifierService.sendShotToC(this.form.value);
   }
-
   public ngOnDestroy(): void {
     this.disconnect();
   }

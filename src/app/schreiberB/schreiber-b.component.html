@@ -1,16 +1,20 @@
 <div class="toolbar" role="banner">
   <h1>Bahn B</h1>
+  <h1>Zähler: {{data.counter}}</h1>
+  <h1>Shot: {{data.shot}}</h1>
+  <h1>Alert: {{data.alert}}</h1>
+  <h1>Bahn geschlossen: {{data.closed}}</h1>
 </div>
 
 <div class="content" role="main">
   <form [formGroup]="form" (ngSubmit)="sendMessage()">
     <input type="text" formControlName="message">
     <button type="submit">submit</button>
-    <span>{{lastUserMessage | json}}</span>
   </form>
-  <ul>
-    <li *ngFor="let m of messages">{{m | json}}</li>
-  </ul>
   <button (click)="subscribe()">connect</button>
   <button (click)="disconnect()">disconnect</button>
+  <button (click)="alertOn()">Alarmieren</button>
+  <button (click)="close()">Bahn sperren</button>
+  <button (click)="alertOff()">Alarm stoppen</button>
+  <button (click)="open()">Bahn freigeben</button>
 </div>

@@ -9,18 +9,11 @@ import {BahnDTO} from "./bahn-d-t-o";
 })
 export class NotifierService {
 
-  public notify: Observable<string> = new Subject();
-  public updateOnA: Observable<number> = new Subject();
-  public updateOnB: Observable<number> = new Subject();
-  public updateOnC: Observable<number> = new Subject();
+  public updateOnA: Observable<BahnDTO> = new Subject();
+  public updateOnB: Observable<BahnDTO> = new Subject();
+  public updateOnC: Observable<BahnDTO> = new Subject();
 
   constructor(private stomp: RxStomp) {
-    this.notify = stomp.watch('/anClient/message')
-      .pipe(
-        map((message: IMessage) => JSON.parse(message.body)),
-        share({resetOnRefCountZero: true})
-      )
-
     this.updateOnA = stomp.watch("/anClient/updateOnA")
       .pipe(
         map((message: IMessage) => JSON.parse(message.body)),
@@ -38,11 +31,6 @@ export class NotifierService {
         map((message: IMessage) => JSON.parse(message.body)),
         share({resetOnRefCountZero: true})
       )
-
-  }
-
-  public sendToDefault(message:string): void {
-    this.send(message, "/anServer/message");
   }
 
   public sendShotToA(message: string): void {
@@ -57,6 +45,54 @@ export class NotifierService {
     this.send(message, "/anServer/shotOnC");
   }
 
+  public alertOnA(): void {
+    this.send("", "/anServer/alertOnA");
+  }
+
+  public alertOnB(): void {
+    this.send("", "/anServer/alertOnB");
+  }
+
+  public alertOnC(): void {
+    this.send("", "/anServer/alertOnC");
+  }
+
+  public alertOffA(): void {
+    this.send("", "/anServer/alertOffA");
+  }
+
+  public alertOffB(): void {
+    this.send("", "/anServer/alertOffB");
+  }
+
+  public alertOffC(): void {
+    this.send("", "/anServer/alertOffC");
+  }
+
+  public openA(): void {
+    this.send("", "/anServer/openA");
+  }
+
+  public openB(): void {
+    this.send("", "/anServer/openB");
+  }
+
+  public openC(): void {
+    this.send("", "/anServer/openC");
+  }
+
+  public closeA(): void {
+    this.send("", "/anServer/closeA");
+  }
+
+  public closeB(): void {
+    this.send("", "/anServer/closeB");
+  }
+
+  public closeC(): void {
+    this.send("", "/anServer/closeC");
+  }
+
   private send(message: string, destination: string): void {
     this.stomp.publish({
       destination: destination,
@@ -64,4 +100,5 @@ export class NotifierService {
       headers: {'content-type': 'application/json'}
     });
   }
+
 }
