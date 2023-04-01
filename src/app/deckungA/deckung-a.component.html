@@ -1,18 +1,15 @@
-<div class="toolbar" role="banner">
-  <h1>Bahn A</h1>
-  <h1>Zähler: {{data.counter}}</h1>
-  <h1>Shot: {{data.shot}}</h1>
-  <h1>Alert: {{data.alert}}</h1>
-  <h1>Bahn geschlossen: {{data.closed}}</h1>
-</div>
-
-<div class="content" role="main">
-  <button *ngIf="!showShotButtons" (click)="showShotButtons = true">Schuss melden</button>
-  <button *ngIf="showShotButtons" (click)="sendMessage('treffer')">Treffer</button>
-  <button *ngIf="showShotButtons" (click)="sendMessage('großer')">Großer</button>
-  <button *ngIf="showShotButtons" (click)="sendMessage('kleiner')">Kleiner</button>
-
-  <button (click)="close()">Bahn sperren</button>
-  <button *ngif="data.alert" (click)="alertOff()">Alarm stoppen</button>
-  <button (click)="open()">Bahn freigeben</button>
+<div class="row">
+  <div class="content">
+    <button *ngIf="!showShotButtons" (click)="showShotButtons = true">Schuss melden</button>
+    <button *ngIf="showShotButtons" (click)="sendMessage('treffer')">Treffer</button>
+    <button *ngIf="showShotButtons" (click)="sendMessage('großer')">Großer</button>
+    <button *ngIf="showShotButtons" (click)="sendMessage('kleiner')">Kleiner</button>
+  </div>
+  <div>
+    <button *ngIf="!data.closed" (click)="close()">Bahn sperren</button>
+    <button *ngIf="data.alert" (click)="alertOff()">Alarm stoppen</button>
+    <button *ngIf="data.closed" (click)="open()">Bahn freigeben</button>
+    <h1>Bahn A</h1>
+    <h1>Zähler: {{data.counter}}</h1>
+  </div>
 </div>

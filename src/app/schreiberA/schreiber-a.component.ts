@@ -29,10 +29,10 @@ export class SchreiberAComponent implements OnDestroy {
     this.notifierService.updateOnA
       .pipe(takeUntil(this.disconnect$))
       .subscribe((dto: BahnDTO) => {
-        this.data = new BahnDTO(dto);
-        if (dto.shot == "kleiner") {
+        if (dto.shot == "kleiner" && this.data.shot !== "kleiner") {
           env.beep();
         }
+        this.data = new BahnDTO(dto);
       })
 
     // Request für die initialen Daten
