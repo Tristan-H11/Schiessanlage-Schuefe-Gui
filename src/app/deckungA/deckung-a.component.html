@@ -7,11 +7,12 @@
 </div>
 
 <div class="content" role="main">
-  <button (click)="sendMessage('treffer')">Treffer</button>
-  <button (click)="sendMessage('großer')">Großer</button>
-  <button (click)="sendMessage('kleiner')">Kleiner</button>
+  <button *ngIf="!showShotButtons" (click)="showShotButtons = true">Schuss melden</button>
+  <button *ngIf="showShotButtons" (click)="sendMessage('treffer')">Treffer</button>
+  <button *ngIf="showShotButtons" (click)="sendMessage('großer')">Großer</button>
+  <button *ngIf="showShotButtons" (click)="sendMessage('kleiner')">Kleiner</button>
 
   <button (click)="close()">Bahn sperren</button>
-  <button (click)="alertOff()">Alarm stoppen</button>
+  <button *ngif="data.alert" (click)="alertOff()">Alarm stoppen</button>
   <button (click)="open()">Bahn freigeben</button>
 </div>

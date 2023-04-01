@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {SchreiberBRoutingModule} from './schreiber-b-routing.module';
 import {SchreiberBComponent} from './schreiber-b.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     SchreiberBRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSlideToggleModule,
   ]
 })
 export class SchreiberBModule {

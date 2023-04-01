@@ -22,6 +22,8 @@ import {DeckungAComponent} from "./deckungA/deckung-a.component";
 import {DeckungBComponent} from "./deckungB/deckung-b.component";
 import {DeckungCComponent} from "./deckungC/deckung-c.component";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
       {path: 'schreiberC', component: SchreiberCComponent, pathMatch: "full"}
     ]),
     NoopAnimationsModule,
+    MatButtonToggleModule,
+    MatSliderModule
   ],
   providers: [
     {

@@ -13,6 +13,8 @@ export class DeckungAComponent implements OnDestroy {
 
   public disconnect$: Subject<boolean> = new Subject();
 
+  public showShotButtons: boolean = false;
+
   constructor(public notifierService: NotifierService) {
     this.subscribe();
   }
@@ -46,6 +48,7 @@ export class DeckungAComponent implements OnDestroy {
   }
 
   public sendMessage(value: string): void {
+    this.showShotButtons = false;
     this.notifierService.sendShotToA(value);
   }
 

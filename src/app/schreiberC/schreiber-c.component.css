@@ -1,1 +1,55 @@
 
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.rectangle {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  background-color: rgba(229, 224, 160, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px black;
+  border-radius: 50px;
+}
+
+.rectangle span {
+  text-align: center; /* Centers the content vertically */
+  font-size: 50px;
+  color: #262A56;
+}
+
+.rectangle.active {
+  background-color: #f06292;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.counter-label {
+  margin-bottom: 10px;
+}
+
+.status-label {
+  /*color: #666;*/
+}
+
+.switches {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.spacer {
+  display: block; /* Makes the span a block-level element */
+  height: 20px; /* Adjust this value to control the amount of vertical space */
+}
+

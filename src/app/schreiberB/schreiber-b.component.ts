@@ -3,6 +3,7 @@ import {NotifierService} from '../notifier-service.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subject, takeUntil} from 'rxjs';
 import {BahnDTO} from "../bahn-d-t-o";
+import {env} from "../../env/env";
 
 
 @Component({
@@ -29,10 +30,29 @@ export class SchreiberBComponent implements OnDestroy{
       .pipe(takeUntil(this.disconnect$))
       .subscribe((dto: BahnDTO) => {
         this.data = new BahnDTO(dto);
+        if (dto.shot == "kleiner") {
+          env.beep();
+        }
       })
 
     // Request für die initialen Daten
     this.notifierService.sendShotToB("treffer");
+  }
+
+  public handleAlertButton(): void {
+    if (this.data.alert) {
+      this.alertOn()
+    } else {
+      this.alertOff();
+    }
+  }
+
+  public handleSperrButton(): void {
+    if (this.data.closed) {
+      this.close();
+    } else {
+      this.open();
+    }
   }
 
 
@@ -52,12 +72,8 @@ export class SchreiberBComponent implements OnDestroy{
     this.notifierService.closeB();
   }
 
-  public disconnect(): void{
+  public disconnect(): void {
     this.disconnect$.next(true);
-  }
-
-  public sendMessage(): void {
-    this.notifierService.sendShotToB(this.form.value);
   }
 
   public ngOnDestroy(): void {
