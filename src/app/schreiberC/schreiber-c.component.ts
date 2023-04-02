@@ -65,11 +65,11 @@ export class SchreiberCComponent implements OnDestroy{
   }
 
   public open(): void {
-    this.notifierService.openC();
+    this.notifierService.schreiberOpenC();
   }
 
   public close(): void {
-    this.notifierService.closeC();
+    this.notifierService.schreiberCloseC();
   }
 
   public disconnect(): void{

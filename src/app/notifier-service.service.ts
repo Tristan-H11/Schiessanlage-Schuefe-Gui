@@ -77,28 +77,52 @@ export class NotifierService {
     this.send("", "/anServer/alertOffC");
   }
 
-  public openA(): void {
-    this.send("", "/anServer/openA");
+  public schreiberOpenA(): void {
+    this.send("", "/anServer/schreiberOpenA");
   }
 
-  public openB(): void {
-    this.send("", "/anServer/openB");
+  public schreiberOpenB(): void {
+    this.send("", "/anServer/schreiberOpenB");
   }
 
-  public openC(): void {
-    this.send("", "/anServer/openC");
+  public schreiberOpenC(): void {
+    this.send("", "/anServer/schreiberOpenC");
   }
 
-  public closeA(): void {
-    this.send("", "/anServer/closeA");
+  public schreiberCloseA(): void {
+    this.send("", "/anServer/schreiberCloseA");
   }
 
-  public closeB(): void {
-    this.send("", "/anServer/closeB");
+  public schreiberCloseB(): void {
+    this.send("", "/anServer/schreiberCloseB");
   }
 
-  public closeC(): void {
-    this.send("", "/anServer/closeC");
+  public schreiberCloseC(): void {
+    this.send("", "/anServer/schreiberCloseC");
+  }
+
+  public deckungOpenA(): void {
+    this.send("", "/anServer/deckungOpenA");
+  }
+
+  public deckungOpenB(): void {
+    this.send("", "/anServer/deckungOpenB");
+  }
+
+  public deckungOpenC(): void {
+    this.send("", "/anServer/deckungOpenC");
+  }
+
+  public deckungCloseA(): void {
+    this.send("", "/anServer/deckungCloseA");
+  }
+
+  public deckungCloseB(): void {
+    this.send("", "/anServer/deckungCloseB");
+  }
+
+  public deckungCloseC(): void {
+    this.send("", "/anServer/deckungCloseC");
   }
 
   public aufsichtSetA(value: number): void {

@@ -36,11 +36,11 @@ export class DeckungAComponent implements OnDestroy {
   }
 
   public open(): void {
-    this.notifierService.openA();
+    this.notifierService.deckungOpenA();
   }
 
   public close(): void {
-    this.notifierService.closeA();
+    this.notifierService.deckungCloseA();
   }
 
   public disconnect(): void {

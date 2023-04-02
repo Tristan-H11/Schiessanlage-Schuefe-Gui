@@ -4,7 +4,9 @@
 export class BahnDTO {
   public counter: number = 0;
   public shot: string = "";
-  public closed: boolean = true;
+
+  // 0 = offen, 1 = schreiber geschlossen, 2 = deckung geschlossen
+  public closed: number = 1;
   public alert: boolean = false;
 
   public constructor(data?: BahnDTO) {
