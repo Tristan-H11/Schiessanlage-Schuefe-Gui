@@ -29,7 +29,7 @@ export class SchreiberAComponent implements OnDestroy {
     this.notifierService.updateOnA
       .pipe(takeUntil(this.disconnect$))
       .subscribe((dto: BahnDTO) => {
-        if (dto.shot == "kleiner") {
+        if (dto.shot == "kleiner" && dto.notify) {
           env.beep();
         }
         this.data = new BahnDTO(dto);
@@ -38,23 +38,6 @@ export class SchreiberAComponent implements OnDestroy {
     // Request für die initialen Daten
     this.notifierService.sendShotToA("treffer");
   }
-
-  public handleAlertButton(): void {
-    if (this.data.alert) {
-      this.alertOn()
-    } else {
-      this.alertOff();
-    }
-  }
-
-  public handleSperrButton(): void {
-    if (this.data.closed) {
-      this.close();
-    } else {
-      this.open();
-    }
-  }
-
 
   public alertOn(): void {
     this.notifierService.alertOnA();

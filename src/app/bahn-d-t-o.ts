@@ -8,6 +8,7 @@ export class BahnDTO {
   // 0 = offen, 1 = schreiber geschlossen, 2 = deckung geschlossen
   public closed: number = 1;
   public alert: boolean = false;
+  public notify: boolean = false;
 
   public constructor(data?: BahnDTO) {
     if (data) {

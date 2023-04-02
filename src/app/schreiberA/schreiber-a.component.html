@@ -17,6 +17,8 @@
   <div class="switches">
     <button *ngIf="isOpen()" (click)="close()">Bahn sperren</button>
     <button *ngIf="isClosedBySchreiber()" (click)="open()">Bahn freigeben</button>
+    <button *ngIf="!data.alert" (click)="alertOn()">Alarmieren</button>
+    <button *ngIf="data.alert" (click)="alertOff()">Alarm stoppen</button>
   </div>
   <div class="most-right">
     <div class="status-label">BAHN A</div>
