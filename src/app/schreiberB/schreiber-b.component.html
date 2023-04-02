@@ -1,15 +1,16 @@
 <div class="row">
   <div class="rectangle" [ngClass]="{'active': data.shot === 'treffer'}"><span>T</span></div>
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'großer'}"><span>G</span></div>
+  <div class="rectangle" [ngClass]="{'active': data.shot === 'grosser'}"><span>G</span></div>
   <div class="rectangle" [ngClass]="{'active': data.shot === 'kleiner'}"><span>K</span></div>
   <div class="labels">
-    <div class="status-label">BAHN B</div>
     <span class="spacer"></span>
     <div class="counter-label">Zähler: {{ data.counter }}</div>
   </div>
   <div class="switches">
-    <mat-slide-toggle (change)="handleAlertButton()" [(ngModel)]="data.alert">Alarmierung</mat-slide-toggle>
-    <span class="spacer"></span>
-    <mat-slide-toggle (change)="handleSperrButton()" [(ngModel)]="data.closed">Bahnsperrung</mat-slide-toggle>
+    <button *ngIf="isOpen()" (click)="close()">Bahn sperren</button>
+    <button *ngIf="isClosedBySchreiber()" (click)="open()">Bahn freigeben</button>
+  </div>
+  <div class="most-right">
+    <div class="status-label">BAHN B</div>
   </div>
 </div>

@@ -34,11 +34,11 @@ export class DeckungBComponent implements OnDestroy {
   }
 
   public open(): void {
-    this.notifierService.openB();
+    this.notifierService.deckungOpenB();
   }
 
   public close(): void {
-    this.notifierService.closeB();
+    this.notifierService.deckungCloseB();
   }
 
   public disconnect(): void {

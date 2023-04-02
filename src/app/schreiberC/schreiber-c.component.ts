@@ -72,6 +72,19 @@ export class SchreiberCComponent implements OnDestroy{
     this.notifierService.schreiberCloseC();
   }
 
+  public isOpen(): boolean {
+    return this.data.closed === 0;
+  }
+
+  public isClosedBySchreiber(): boolean {
+    return this.data.closed === 1;
+  }
+
+  public isClosedByDeckung(): boolean {
+    return this.data.closed === 2
+  }
+
+
   public disconnect(): void{
     this.disconnect$.next(true);
   }

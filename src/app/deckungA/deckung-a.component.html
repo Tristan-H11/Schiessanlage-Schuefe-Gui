@@ -1,18 +1,22 @@
 <div class="row">
-  <div class="content">
+  <div *ngIf="isOpen()" class="content">
     <button *ngIf="!showShotButtons" (click)="showShotButtons = true">Schuss melden</button>
     <button *ngIf="showShotButtons" (click)="sendMessage('treffer')">Treffer</button>
-    <button *ngIf="showShotButtons" (click)="sendMessage('großer')">Großer</button>
+    <button *ngIf="showShotButtons" (click)="sendMessage('grosser')">Großer</button>
     <button *ngIf="showShotButtons" (click)="sendMessage('kleiner')">Kleiner</button>
   </div>
+  <div *ngIf="isClosedBySchreiber()">
+    <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
+  </div>
+  <div *ngIf="isClosedByDeckung()">
+    <h1>Die Bahn ist von der Deckung gesperrt worden.</h1>
+  </div>
   <div>
-    <button *ngIf="!data.closed" (click)="close()">Bahn sperren</button>
+    <button *ngIf="isOpen()" (click)="close()">Bahn sperren</button>
     <button *ngIf="data.alert" (click)="alertOff()">Alarm stoppen</button>
-    <button *ngIf="data.closed" (click)="open()">Bahn freigeben</button>
+    <button *ngIf="isClosedByDeckung()" (click)="open()">Bahn freigeben</button>
     <h1>Bahn A</h1>
     <h1>Zähler: {{data.counter}}</h1>
+    <span>{{data.closed}}</span>
   </div>
 </div>
-
-<!--TODO Wenn die Bahn gesperrt ist, sollen die Knöpfe weg sein und durch ein Label ersetzt sein
-TODO Unterschied einbauen, ob Deckung oder Schreiber gesperrt. Nur der kann auch wieder entsperren-->
