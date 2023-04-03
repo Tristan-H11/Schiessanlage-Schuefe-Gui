@@ -2,6 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {BahnDTO} from "../bahn-d-t-o";
 import {Subject, takeUntil} from "rxjs";
 import {NotifierService} from "../notifier-service.service";
+import {RxStomp} from "@stomp/rx-stomp";
 
 @Component({
   selector: 'app-deckung',
@@ -15,8 +16,9 @@ export class DeckungAComponent implements OnDestroy {
 
   public showShotButtons: boolean = false;
 
-  constructor(public notifierService: NotifierService) {
+  constructor(public notifierService: NotifierService, public stomp: RxStomp) {
     this.subscribe();
+
   }
 
   public subscribe(): void {

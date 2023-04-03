@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="stomp.connected()">
   <div *ngIf="isOpen()" class="row">
     <div class="rectangle" [ngClass]="{'active': data.shot === 'treffer'}"><span>T</span></div>
     <div class="rectangle" [ngClass]="{'active': data.shot === 'grosser'}"><span>G</span></div>
@@ -23,5 +23,8 @@
   <div class="most-right">
     <div class="status-label">BAHN A</div>
   </div>
+</div>
+<div *ngIf="!stomp.connected()">
+  <h2>Warte auf Verbindung zum Server... </h2>
 </div>
 

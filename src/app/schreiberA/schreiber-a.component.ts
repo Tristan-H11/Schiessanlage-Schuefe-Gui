@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Subject, takeUntil} from 'rxjs';
 import {BahnDTO} from "../bahn-d-t-o";
 import {env} from "../../env/env";
+import {RxStomp} from "@stomp/rx-stomp";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class SchreiberAComponent implements OnDestroy {
 
   public disconnect$: Subject<boolean> = new Subject();
 
-  constructor(public notifierService: NotifierService) {
+  constructor(public notifierService: NotifierService, public stomp: RxStomp) {
     this.subscribe();
   }
 

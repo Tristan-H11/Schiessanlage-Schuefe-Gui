@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="stomp.connected()">
   <div *ngIf="isOpen()" class="content">
     <button *ngIf="!showShotButtons" (click)="showShotButtons = true">Schuss melden</button>
     <button *ngIf="showShotButtons" (click)="sendMessage('treffer')">Treffer</button>
@@ -17,6 +17,8 @@
     <button *ngIf="isClosedByDeckung()" (click)="open()">Bahn freigeben</button>
     <h1>Bahn A</h1>
     <h1>Zähler: {{data.counter}}</h1>
-    <span>{{data.closed}}</span>
   </div>
+</div>
+<div *ngIf="!stomp.connected()">
+  <h2>Warte auf Verbindung zum Server... </h2>
 </div>
