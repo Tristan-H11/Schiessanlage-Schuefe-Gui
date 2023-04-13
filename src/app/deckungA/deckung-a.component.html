@@ -1,24 +1,47 @@
-<div class="row" *ngIf="stomp.connected()">
-  <div *ngIf="isOpen()" class="content">
-    <button *ngIf="!showShotButtons" (click)="showShotButtons = true">Schuss melden</button>
-    <button *ngIf="showShotButtons" (click)="sendMessage('treffer')">Treffer</button>
-    <button *ngIf="showShotButtons" (click)="sendMessage('grosser')">Großer</button>
-    <button *ngIf="showShotButtons" (click)="sendMessage('kleiner')">Kleiner</button>
+<button *ngIf="data.alert" (click)="alertOff()">Alarm stoppen</button>
+
+
+<div *ngIf="!stomp.connected()" class='container-fluid text-white fs-2 full-height'>
+  <div class='row m-2 text-center bg-dark rounded-4'>
+    <div class="col-12">
+      Bahn <span class='text-danger'>A</span>
+    </div>
   </div>
-  <div *ngIf="isClosedBySchreiber()">
-    <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
+  <div class="row m-2">
+    <div class="col d-flex bg-dark rounded-4 me-2">
+      <p class="m-auto">Punkte: <span class='text-danger'>725</span></p>
+    </div>
+    <div class="col d-flex bg-dark rounded-4 ms-2">
+      <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary m-auto my-3">Bahn sperren</button>
+      <button *ngIf="isClosedByDeckung()" (click)="open()" class="btn btn-lg btn-primary m-auto my-3">Bahn freigeben
+      </button>
+    </div>
   </div>
-  <div *ngIf="isClosedByDeckung()">
-    <h1>Die Bahn ist von der Deckung gesperrt worden.</h1>
-  </div>
-  <div>
-    <button *ngIf="isOpen()" (click)="close()">Bahn sperren</button>
-    <button *ngIf="data.alert" (click)="alertOff()">Alarm stoppen</button>
-    <button *ngIf="isClosedByDeckung()" (click)="open()">Bahn freigeben</button>
-    <h1>Bahn A</h1>
-    <h1>Zähler: {{data.counter}}</h1>
+  <div class="row m-2 bg-dark rounded-4">
+    <button *ngIf="!showShotButtons" (click)="showShotButtons = true" class="btn btn-lg btn-primary m-auto my-3">Schuss melden</button>
+    <div *ngIf="isOpen()">
+      <div *ngIf="showShotButtons" class="row m-2">
+        <div class="col d-flex">
+          <button type="button" (click)="sendMessage('kleiner')" class="btn btn-lg btn-primary m-auto my-3">KLEINER</button>
+        </div>
+        <div class="col d-flex">
+          <button type="button" (click)="sendMessage('grosser')" class="btn btn-lg btn-primary m-auto my-3">GROßER</button>
+        </div>
+        <div class="col d-flex">
+          <button type="button" (click)="sendMessage('treffer')" class="btn btn-lg btn-primary m-auto my-3">TREFFER</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex align-items-center justify-content-center">
+      <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
+    </div>
+    <div *ngIf="isClosedByDeckung()" class="flex-grow-1 d-flex align-items-center justify-content-center">
+      <h1>Die Bahn ist von der Deckung gesperrt worden.</h1>
+    </div>
   </div>
 </div>
-<div *ngIf="!stomp.connected()">
+
+
+<div *ngIf="stomp.connected()">
   <h2>Warte auf Verbindung zum Server... </h2>
 </div>

@@ -46,11 +46,11 @@ export class DeckungAComponent implements OnDestroy {
   }
 
   public isOpen(): boolean {
-    return this.data.closed === 0;
+    return this.data.closed === 1; //TODO
   }
 
   public isClosedBySchreiber(): boolean {
-    return this.data.closed === 1;
+    return this.data.closed === 0; //TODO
   }
 
   public isClosedByDeckung(): boolean {
