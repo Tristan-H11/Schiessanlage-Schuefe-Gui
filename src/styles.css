@@ -3,11 +3,17 @@
 html, body {
   height: 100%;
   /*margin: 1em;*/
-  box-sizing: border-box;
-  overflow: hidden;
+  /*box-sizing: border-box;*/
+  /*overflow: hidden;*/
 }
 
-.full-height{
-  height: 100%;
-}
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.bg-pastel-red {
+  background-color: #ff9b9b; /* Pastellrot */
+}
+
+.bg-pastel-green {
+  background-color: #8ef18e; /* Pastellgrün */
+}

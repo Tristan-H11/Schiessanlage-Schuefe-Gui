@@ -1,37 +1,49 @@
-<button *ngIf="data.alert" (click)="alertOff()">Alarm stoppen</button>
-
-
-<div *ngIf="!stomp.connected()" class='container-fluid text-white fs-2 full-height'>
+<div *ngIf="stomp.connected()" class='container-fluid min-vh-100 text-white fs-1 d-flex flex-column' [ngClass]="getBackgroundColorClass()">
   <div class='row m-2 text-center bg-dark rounded-4'>
-    <div class="col-12">
-      Bahn <span class='text-danger'>A</span>
+    <div class="col-12 d-flex m-2">
+      <p class="m-auto">Bahn <span class="badge text-bg-danger">A</span></p>
     </div>
   </div>
+
   <div class="row m-2">
     <div class="col d-flex bg-dark rounded-4 me-2">
-      <p class="m-auto">Punkte: <span class='text-danger'>725</span></p>
+      <p class="m-auto">Zähler: <span class="badge text-bg-danger">{{data.counter}}</span></p>
     </div>
-    <div class="col d-flex bg-dark rounded-4 ms-2">
-      <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary m-auto my-3">Bahn sperren</button>
-      <button *ngIf="isClosedByDeckung()" (click)="open()" class="btn btn-lg btn-primary m-auto my-3">Bahn freigeben
+    <div class="col d-flex bg-dark rounded-4 ms-2 ">
+      <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn sperren</button>
+      <button *ngIf="isClosedByDeckung()" (click)="open()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn
+        freigeben
       </button>
-    </div>
-  </div>
-  <div class="row m-2 bg-dark rounded-4">
-    <button *ngIf="!showShotButtons" (click)="showShotButtons = true" class="btn btn-lg btn-primary m-auto my-3">Schuss melden</button>
-    <div *ngIf="isOpen()">
-      <div *ngIf="showShotButtons" class="row m-2">
-        <div class="col d-flex">
-          <button type="button" (click)="sendMessage('kleiner')" class="btn btn-lg btn-primary m-auto my-3">KLEINER</button>
-        </div>
-        <div class="col d-flex">
-          <button type="button" (click)="sendMessage('grosser')" class="btn btn-lg btn-primary m-auto my-3">GROßER</button>
-        </div>
-        <div class="col d-flex">
-          <button type="button" (click)="sendMessage('treffer')" class="btn btn-lg btn-primary m-auto my-3">TREFFER</button>
-        </div>
+      <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex text-center align-items-center justify-content-center">
+        <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
       </div>
     </div>
+  </div>
+
+  <div class="flex-grow-1 row m-2 bg-dark rounded-4">
+    <button *ngIf="!showShotButtons && isOpen() && !data.alert" (click)="showShotButtons = true" class="btn btn-lg btn-primary w-50 m-auto my-3">
+      <p style="font-size: 4rem">Schuss melden</p>
+    </button>
+    <div *ngIf="isOpen() && showShotButtons && !data.alert" class="flex-grow-1 row m-2">
+      <div class="col-4 d-flex">
+        <button type="button" (click)="sendMessage('treffer')" class="btn btn-lg btn-primary w-100 m-auto my-3">
+          <p style="font-size: 4rem">TREFFER</p>
+        </button>
+      </div>
+      <div class="col-4 d-flex">
+        <button type="button" (click)="sendMessage('grosser')" class="btn btn-lg btn-primary w-100 m-auto my-3">
+          <p style="font-size: 4rem">GROßER</p>
+        </button>
+      </div>
+      <div class="col-4 d-flex">
+        <button type="button" (click)="sendMessage('kleiner')" class="btn btn-lg btn-primary w-100 m-auto my-3">
+          <p style="font-size: 4rem">KLEINER</p>
+        </button>
+      </div>
+    </div>
+    <button *ngIf="data.alert" (click)="alertOff()" class="btn btn-lg btn-danger w-50 m-auto my-3">
+      <p style="font-size: 4rem">Alarm stoppen</p>
+    </button>
     <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex align-items-center justify-content-center">
       <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
     </div>
@@ -42,6 +54,6 @@
 </div>
 
 
-<div *ngIf="stomp.connected()">
+<div *ngIf="!stomp.connected()" class="text-center m-5">
   <h2>Warte auf Verbindung zum Server... </h2>
 </div>

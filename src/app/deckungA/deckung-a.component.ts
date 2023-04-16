@@ -3,6 +3,7 @@ import {BahnDTO} from "../bahn-d-t-o";
 import {Subject, takeUntil} from "rxjs";
 import {NotifierService} from "../notifier-service.service";
 import {RxStomp} from "@stomp/rx-stomp";
+import {env} from "../../env/env";
 
 @Component({
   selector: 'app-deckung',
@@ -26,6 +27,9 @@ export class DeckungAComponent implements OnDestroy {
       .pipe(takeUntil(this.disconnect$))
       .subscribe((dto: BahnDTO) => {
         this.data = new BahnDTO(dto);
+        if (dto.alert) {
+          env.beep();
+        }
       })
 
     // Request für die initialen Daten
@@ -46,11 +50,11 @@ export class DeckungAComponent implements OnDestroy {
   }
 
   public isOpen(): boolean {
-    return this.data.closed === 1; //TODO
+    return this.data.closed === 0;
   }
 
   public isClosedBySchreiber(): boolean {
-    return this.data.closed === 0; //TODO
+    return this.data.closed === 1;
   }
 
   public isClosedByDeckung(): boolean {
@@ -68,5 +72,12 @@ export class DeckungAComponent implements OnDestroy {
 
   public ngOnDestroy(): void {
     this.disconnect();
+  }
+
+  public getBackgroundColorClass(): string {
+      if (this.isOpen()) {
+        return "bg-pastel-green"
+      }
+      return "bg-pastel-red";
   }
 }
