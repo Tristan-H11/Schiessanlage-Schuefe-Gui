@@ -1,16 +1,28 @@
-<div class="row">
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'treffer'}"><span>T</span></div>
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'grosser'}"><span>G</span></div>
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'kleiner'}"><span>K</span></div>
-  <div class="labels">
-    <span class="spacer"></span>
-    <div class="counter-label">Zähler: {{ data.counter }}</div>
+<div class="container-fluid min-vh-100 text-white fs-1 d-flex flex-row">
+  <div class="col m2 text-center bg-dark rounded-4">
+    LAMPEN
   </div>
-  <div class="switches">
-    <button *ngIf="isOpen()" (click)="close()">Bahn sperren</button>
-    <button *ngIf="isClosedBySchreiber()" (click)="open()">Bahn freigeben</button>
+  <div class="col d-flex bg-dark rounded-4 m-2 text-center">
+    <p class="m-auto">Bahn <br> <br>
+      <span class="badge text-bg-danger">A</span></p>
   </div>
-  <div class="most-right">
-    <div class="status-label">BAHN B</div>
+  <div class="col d-flex bg-dark rounded-4 m-2 text-center">
+    <p class="m-auto">Zähler: <br> <br>
+      <span class="badge text-bg-danger">{{data.counter}}</span></p>
   </div>
+  <div class="col d-flex bg-dark rounded-4 m-2 text-center">
+    <div class="row d-flex">
+      <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary w-50 m-auto my-3">Sperren</button>
+      <button *ngIf="isClosedBySchreiber()" (click)="open()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn
+        freigeben
+      </button>
+    </div>
+    <div class="row d-flex">
+      <button *ngIf="!data.alert" (click)="alertOn()" class="btn btn-lg btn-primary w-50 m-auto my-3">Alarmieren
+      </button>
+      <button *ngIf="data.alert" (click)="alertOff()" class="btn btn-lg btn-primary w-50 m-auto my-3">Alarm stoppen
+      </button>
+    </div>
+  </div>
+
 </div>

@@ -10,8 +10,8 @@
       <p class="m-auto">Zähler: <span class="badge text-bg-danger">{{data.counter}}</span></p>
     </div>
     <div class="col d-flex bg-dark rounded-4 ms-2 ">
-      <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn sperren</button>
-      <button *ngIf="isClosedByDeckung()" (click)="open()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn
+      <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary w-50 m-2 my-3">Bahn sperren</button>
+      <button *ngIf="isClosedByDeckung()" (click)="open()" class="btn btn-lg btn-primary w-50 m-2 my-3">Bahn
         freigeben
       </button>
       <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex text-center align-items-center justify-content-center">

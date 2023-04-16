@@ -1,17 +1,18 @@
-<form [formGroup]="form">
-  <div>
-    <label>Bahn A</label>
-    <input type="number" formControlName="a" [(ngModel)]="data.a">
+<form [formGroup]="form" class="container-fluid m-2 d-flex flex-column">
+  <div class="m-2">
+    <label class="me-2">Bahn A</label>
+    <input type="number" formControlName="a" [(ngModel)]="data.a" class="me-2">
     <button (click)="setA()">Setzen</button>
   </div>
-  <div>
-    <label>Bahn B</label>
-    <input type="number" formControlName="b" [(ngModel)]="data.b">
+  <div class="m-2">
+    <label class="me-2">Bahn B</label>
+    <input type="number" formControlName="b" [(ngModel)]="data.b" class="me-2">
     <button (click)="setB()">Setzen</button>
   </div>
-  <div>
-    <label>Bahn C</label>
-    <input type="number" formControlName="c" [(ngModel)]="data.c">
+  <div class="m-2">
+    <label class="me-2">Bahn C</label>
+    <input type="number" formControlName="c" [(ngModel)]="data.c" class="me-2">
     <button (click)="setC()">Setzen</button>
   </div>
+
 </form>
