@@ -5,16 +5,16 @@
     </div>
   </div>
 
-  <div class="row m-2">
+  <div class="row m-2" style="min-height: 20vh;">
     <div class="col d-flex bg-dark rounded-4 me-2">
       <p class="m-auto">Zähler: <span class="badge text-bg-danger">{{data.counter}}</span></p>
     </div>
-    <div class="col d-flex bg-dark rounded-4 ms-2 ">
+    <div class="col d-flex bg-dark rounded-4  text-center align-items-center justify-content-center ">
       <button *ngIf="isOpen()" (click)="close()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn sperren</button>
       <button *ngIf="isClosedByDeckung()" (click)="open()" class="btn btn-lg btn-primary w-50 m-auto my-3">Bahn
         freigeben
       </button>
-      <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex text-center align-items-center justify-content-center">
+      <div *ngIf="isClosedBySchreiber()">
         <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
       </div>
     </div>

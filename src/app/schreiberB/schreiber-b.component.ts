@@ -20,6 +20,7 @@ export class SchreiberBComponent implements OnDestroy{
   data: BahnDTO = new BahnDTO();
 
   public disconnect$: Subject<boolean> = new Subject();
+  public showTreffer: boolean = true;
 
   constructor(public notifierService: NotifierService) {
     this.subscribe();
@@ -30,7 +31,7 @@ export class SchreiberBComponent implements OnDestroy{
       .pipe(takeUntil(this.disconnect$))
       .subscribe((dto: BahnDTO) => {
         this.data = new BahnDTO(dto);
-        if (dto.shot == "kleiner") {
+        if (dto.shot == "kleiner" && dto.notify) {
           env.beep();
         }
       })
@@ -39,22 +40,12 @@ export class SchreiberBComponent implements OnDestroy{
     this.notifierService.sendShotToB("treffer");
   }
 
-  public handleAlertButton(): void {
-    if (this.data.alert) {
-      this.alertOn()
-    } else {
-      this.alertOff();
+  public getColor(kind: string): string {
+    if (this.data.shot === kind) {
+      return "text-red";
     }
+    return "text-subtle";
   }
-
-  public handleSperrButton(): void {
-    if (this.data.closed) {
-      this.close();
-    } else {
-      this.open();
-    }
-  }
-
 
   public alertOn(): void {
     this.notifierService.alertOnB();
@@ -90,5 +81,12 @@ export class SchreiberBComponent implements OnDestroy{
 
   public ngOnDestroy(): void {
     this.disconnect();
+  }
+
+  public getBackgroundColorClass(): string {
+    if (this.isOpen()) {
+      return "bg-pastel-green"
+    }
+    return "bg-pastel-red";
   }
 }

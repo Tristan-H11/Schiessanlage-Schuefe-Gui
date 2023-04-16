@@ -2,10 +2,25 @@
 
 html, body {
   height: 100%;
-  /*margin: 1em;*/
-  /*box-sizing: border-box;*/
-  /*overflow: hidden;*/
 }
+
+/*//TODO*/
+/*//TODO//TODO//TODO//TODO*/
+/*//TODO*/
+/*//TODO*/
+/*//TODO*/
+/*//TODO*/
+/*//TODO*/
+
+/*SCHREIBER B UND DECKUNG B KOPIEREN :D*/
+
+/*//TODO*/
+/*//TODO//TODO//TODO//TODO*/
+/*//TODO*/
+/*//TODO*/
+/*//TODO*/
+/*//TODO*/
+/*//TODO*/
 
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -17,3 +32,21 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bg-pastel-green {
   background-color: #8ef18e; /* Pastellgrün */
 }
+
+.button-blue {
+  background-color: #4861a3;
+}
+
+h1 {
+  margin-bottom: 0 !important;
+}
+
+.text-red {
+  background-color: #e71d35;
+}
+
+.text-subtle {
+ background-color: #b0c4dd;
+}
+
+
