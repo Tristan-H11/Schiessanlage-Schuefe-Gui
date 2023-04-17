@@ -1,25 +1,21 @@
 import {Component, OnDestroy} from '@angular/core';
 import {BahnDTO} from "../bahn-d-t-o";
-import {Subject, takeUntil} from "rxjs";
+import {takeUntil} from "rxjs";
 import {NotifierService} from "../notifier-service.service";
 import {RxStomp} from "@stomp/rx-stomp";
 import {env} from "../../env/env";
+import {AbstractDeckung} from "../AbstractDeckung";
 
 @Component({
   selector: 'app-deckung',
   templateUrl: './deckung-a.component.html',
   styleUrls: ['./deckung-a.component.css']
 })
-export class DeckungAComponent implements OnDestroy {
-  data: BahnDTO = new BahnDTO();
-
-  public disconnect$: Subject<boolean> = new Subject();
-
-  public showShotButtons: boolean = false;
+export class DeckungAComponent extends AbstractDeckung implements OnDestroy {
 
   constructor(public notifierService: NotifierService, public stomp: RxStomp) {
+    super();
     this.subscribe();
-
   }
 
   public subscribe(): void {
@@ -36,7 +32,6 @@ export class DeckungAComponent implements OnDestroy {
     this.notifierService.sendShotToA("treffer");
   }
 
-
   public alertOff(): void {
     this.notifierService.alertOffA();
   }
@@ -49,22 +44,6 @@ export class DeckungAComponent implements OnDestroy {
     this.notifierService.deckungCloseA();
   }
 
-  public isOpen(): boolean {
-    return this.data.closed === 0;
-  }
-
-  public isClosedBySchreiber(): boolean {
-    return this.data.closed === 1;
-  }
-
-  public isClosedByDeckung(): boolean {
-    return this.data.closed === 2
-  }
-
-  public disconnect(): void {
-    this.disconnect$.next(true);
-  }
-
   public sendMessage(value: string): void {
     this.showShotButtons = false;
     this.notifierService.sendShotToA(value);
@@ -72,12 +51,5 @@ export class DeckungAComponent implements OnDestroy {
 
   public ngOnDestroy(): void {
     this.disconnect();
-  }
-
-  public getBackgroundColorClass(): string {
-      if (this.isOpen()) {
-        return "bg-pastel-green"
-      }
-      return "bg-pastel-red";
   }
 }
