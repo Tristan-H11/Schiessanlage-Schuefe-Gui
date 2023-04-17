@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Subject, takeUntil} from 'rxjs';
 import {BahnDTO} from "../bahn-d-t-o";
 import {env} from "../../env/env";
+import {RxStomp} from "@stomp/rx-stomp";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class SchreiberCComponent implements OnDestroy{
 
   public disconnect$: Subject<boolean> = new Subject();
 
-  constructor(public notifierService: NotifierService) {
+  constructor(public notifierService: NotifierService, public stomp: RxStomp) {
     this.subscribe();
   }
 
@@ -29,32 +30,29 @@ export class SchreiberCComponent implements OnDestroy{
     this.notifierService.updateOnC
       .pipe(takeUntil(this.disconnect$))
       .subscribe((dto: BahnDTO) => {
-        this.data = new BahnDTO(dto);
-        if (dto.shot == "kleiner") {
+        if (dto.shot == "kleiner" && dto.notify) {
           env.beep();
         }
+        this.data = new BahnDTO(dto);
       })
 
     // Request für die initialen Daten
     this.notifierService.sendShotToC("treffer");
   }
 
-  public handleAlertButton(): void {
-    if (this.data.alert) {
-      this.alertOn()
-    } else {
-      this.alertOff();
+  public getColor(kind: string): string {
+    if (this.data.shot === kind) {
+      return "text-red";
     }
+    return "text-subtle";
   }
 
-  public handleSperrButton(): void {
-    if (this.data.closed) {
-      this.close();
-    } else {
-      this.open();
+  public getBackgroundColorClass(): string {
+    if (this.isOpen()) {
+      return "bg-pastel-green"
     }
+    return "bg-pastel-red";
   }
-
 
   public alertOn(): void {
     this.notifierService.alertOnC();

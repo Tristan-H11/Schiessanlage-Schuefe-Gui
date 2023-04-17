@@ -40,6 +40,20 @@ export class SchreiberAComponent implements OnDestroy {
     this.notifierService.sendShotToA("treffer");
   }
 
+  public getColor(kind: string): string {
+    if (this.data.shot === kind) {
+      return "text-red";
+    }
+    return "text-subtle";
+  }
+
+  public getBackgroundColorClass(): string {
+    if (this.isOpen()) {
+      return "bg-pastel-green"
+    }
+    return "bg-pastel-red";
+  }
+
   public alertOn(): void {
     this.notifierService.alertOnA();
   }

@@ -1,16 +1,59 @@
-<div class="row">
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'treffer'}"><span>T</span></div>
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'grosser'}"><span>G</span></div>
-  <div class="rectangle" [ngClass]="{'active': data.shot === 'kleiner'}"><span>K</span></div>
-  <div class="labels">
-    <span class="spacer"></span>
-    <div class="counter-label">Zähler: {{ data.counter }}</div>
+<div class="container-fluid min-vh-100 text-white fs-1 d-flex flex-row" [ngClass]="getBackgroundColorClass()" *ngIf="stomp.connected()">
+  <div class="gap-3 col m-2 p-2 ps-4 pe-4 text-center bg-dark rounded-4 flex-row d-flex
+        align-items-center justify-content-around align-content-around"
+       style="min-width: 60vw;
+              font-size: 5rem;">
+    <div *ngIf="isOpen()" class="col rounded-4 p-5" [ngClass]="getColor('treffer')">
+      TREFFER
+    </div>
+    <div *ngIf="isOpen()" class="col rounded-4 p-5" [ngClass]="getColor('grosser')">
+      GROßER
+    </div>
+    <div *ngIf="isOpen()" class="col rounded-4 p-5" [ngClass]="getColor('kleiner')">
+      KLEINER
+    </div>
+    <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex text-center align-items-center justify-content-center">
+      <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
+    </div>
+    <div *ngIf="isClosedByDeckung()" class="flex-grow-1 d-flex align-items-center justify-content-center">
+      <h1>Die Bahn ist von der Deckung gesperrt worden.</h1>
+    </div>
   </div>
-  <div class="switches">
-    <button *ngIf="isOpen()" (click)="close()">Bahn sperren</button>
-    <button *ngIf="isClosedBySchreiber()" (click)="open()">Bahn freigeben</button>
+
+  <div class="col d-flex bg-dark rounded-4 m-2 text-center">
+    <p class="m-auto">Bahn <br> <br>
+      <span class="badge text-bg-danger">C</span></p>
   </div>
-  <div class="most-right">
-    <div class="status-label">BAHN C</div>
+
+  <div class="col d-flex bg-dark rounded-4 m-2 text-center">
+    <p class="m-auto">Zähler: <br> <br>
+      <span class="badge text-bg-danger">{{data.counter}}</span></p>
   </div>
+
+  <div class="col d-flex bg-dark  rounded-4 m-2 text-center flex-column
+        align-items-center justify-content-around align-content-around">
+    <div>
+      <button *ngIf="isOpen()" (click)="close()" class="btn rounded-4 btn-lg button-blue" style="font-size: 2rem">
+        Sperren
+      </button>
+      <button *ngIf="isClosedBySchreiber()" (click)="open()" class="btn rounded-4 btn-lg button-blue"
+              style="font-size: 2rem">
+        Freigeben
+      </button>
+    </div>
+    <div>
+      <button *ngIf="!data.alert" (click)="alertOn()" class="btn rounded-4 btn-lg button-blue"
+              style="font-size: 1.5rem">
+        Alarmieren
+      </button>
+      <button *ngIf="data.alert" (click)="alertOff()" class="btn rounded-4 btn-lg button-blue"
+              style="font-size: 1.5rem">
+        Alarm stoppen
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!stomp.connected()" class="text-center m-5">
+  <h2>Warte auf Verbindung zum Server... </h2>
 </div>
