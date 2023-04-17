@@ -1,10 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
 import {NotifierService} from '../notifier-service.service';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Subject, takeUntil} from 'rxjs';
+import {takeUntil} from 'rxjs';
 import {BahnDTO} from "../bahn-d-t-o";
 import {env} from "../../env/env";
 import {RxStomp} from "@stomp/rx-stomp";
+import {AbstractSchreiber} from "../AbstractSchreiber";
 
 
 @Component({
@@ -12,17 +12,10 @@ import {RxStomp} from "@stomp/rx-stomp";
   templateUrl: './schreiber-c.component.html',
   styleUrls: ['./schreiber-c.component.css']
 })
-export class SchreiberCComponent implements OnDestroy{
-
-  public form: FormGroup = new FormGroup({
-    'message': new FormControl()
-  })
-
-  data: BahnDTO = new BahnDTO();
-
-  public disconnect$: Subject<boolean> = new Subject();
+export class SchreiberCComponent extends AbstractSchreiber implements OnDestroy {
 
   constructor(public notifierService: NotifierService, public stomp: RxStomp) {
+    super();
     this.subscribe();
   }
 
@@ -38,20 +31,6 @@ export class SchreiberCComponent implements OnDestroy{
 
     // Request für die initialen Daten
     this.notifierService.sendShotToC("treffer");
-  }
-
-  public getColor(kind: string): string {
-    if (this.data.shot === kind) {
-      return "text-red";
-    }
-    return "text-subtle";
-  }
-
-  public getBackgroundColorClass(): string {
-    if (this.isOpen()) {
-      return "bg-pastel-green"
-    }
-    return "bg-pastel-red";
   }
 
   public alertOn(): void {
@@ -70,22 +49,6 @@ export class SchreiberCComponent implements OnDestroy{
     this.notifierService.schreiberCloseC();
   }
 
-  public isOpen(): boolean {
-    return this.data.closed === 0;
-  }
-
-  public isClosedBySchreiber(): boolean {
-    return this.data.closed === 1;
-  }
-
-  public isClosedByDeckung(): boolean {
-    return this.data.closed === 2
-  }
-
-
-  public disconnect(): void{
-    this.disconnect$.next(true);
-  }
 
   public ngOnDestroy(): void {
     this.disconnect();
