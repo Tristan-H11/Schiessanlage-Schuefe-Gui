@@ -22,27 +22,27 @@
 
   <div class="flex-grow-1 row m-2 bg-dark rounded-4">
     <button *ngIf="!showShotButtons && isOpen() && !data.alert" (click)="showShotButtons = true" class="btn btn-lg btn-primary w-50 m-auto my-3">
-      <p style="font-size: 4rem">Schuss melden</p>
+      <p style="font-size: 10vh">Schuss melden</p>
     </button>
     <div *ngIf="isOpen() && showShotButtons && !data.alert" class="flex-grow-1 row m-2">
       <div class="col-4 d-flex">
         <button type="button" (click)="sendMessage('treffer')" class="btn btn-lg btn-primary w-100 m-auto my-3">
-          <p style="font-size: 4rem">TREFFER</p>
+          <p style="font-size: 8vh">TREFFER</p>
         </button>
       </div>
       <div class="col-4 d-flex">
         <button type="button" (click)="sendMessage('grosser')" class="btn btn-lg btn-primary w-100 m-auto my-3">
-          <p style="font-size: 4rem">GROßER</p>
+          <p style="font-size: 8vh">GROßER</p>
         </button>
       </div>
       <div class="col-4 d-flex">
         <button type="button" (click)="sendMessage('kleiner')" class="btn btn-lg btn-primary w-100 m-auto my-3">
-          <p style="font-size: 4rem">KLEINER</p>
+          <p style="font-size: 8vh">KLEINER</p>
         </button>
       </div>
     </div>
     <button *ngIf="data.alert" (click)="alertOff()" class="btn btn-lg btn-danger w-50 m-auto my-3">
-      <p style="font-size: 4rem">Alarm stoppen</p>
+      <p style="font-size: 10vh">Alarm stoppen</p>
     </button>
     <div *ngIf="isClosedBySchreiber()" class="flex-grow-1 d-flex align-items-center justify-content-center">
       <h1>Die Bahn ist von dem Schreiber gesperrt worden.</h1>
