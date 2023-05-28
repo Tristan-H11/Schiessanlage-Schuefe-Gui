@@ -22,10 +22,13 @@ export class SchreiberBComponent extends AbstractSchreiber implements OnDestroy{
   public subscribe(): void {
     this.notifierService.updateOnB
       .pipe(takeUntil(this.disconnect$))
-      .subscribe((dto: BahnDTO) => {
+      .subscribe(async (dto: BahnDTO) => {
         this.data = new BahnDTO(dto);
         if (dto.shot == "kleiner" && dto.notify) {
           env.beep();
+        }
+        if (dto.notify) {
+          await this.animateShot(dto);
         }
       })
 

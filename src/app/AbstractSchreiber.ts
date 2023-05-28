@@ -12,6 +12,21 @@ export abstract class AbstractSchreiber {
 
   public disconnect$: Subject<boolean> = new Subject();
 
+  protected async animateShot(dto: BahnDTO): Promise<void> {
+    // eslint-disable-next-line @typescript-eslint/typedef
+    await new Promise(resolve => setTimeout(resolve, 500));
+    this.data.shot = "";
+    // eslint-disable-next-line @typescript-eslint/typedef
+    await new Promise(resolve => setTimeout(resolve, 500));
+    this.data.shot = dto.shot;
+    // eslint-disable-next-line @typescript-eslint/typedef
+    await new Promise(resolve => setTimeout(resolve, 500));
+    this.data.shot = "";
+    // eslint-disable-next-line @typescript-eslint/typedef
+    await new Promise(resolve => setTimeout(resolve, 500));
+    this.data.shot = dto.shot;
+  }
+
   public isOpen(): boolean {
     return this.data.closed === 0;
   }

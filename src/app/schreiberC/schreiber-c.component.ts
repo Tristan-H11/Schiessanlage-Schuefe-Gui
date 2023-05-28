@@ -22,11 +22,14 @@ export class SchreiberCComponent extends AbstractSchreiber implements OnDestroy 
   public subscribe(): void {
     this.notifierService.updateOnC
       .pipe(takeUntil(this.disconnect$))
-      .subscribe((dto: BahnDTO) => {
+      .subscribe(async (dto: BahnDTO) => {
         if (dto.shot == "kleiner" && dto.notify) {
           env.beep();
         }
         this.data = new BahnDTO(dto);
+        if (dto.notify) {
+          await this.animateShot(dto);
+        }
       })
 
     // Request für die initialen Daten
