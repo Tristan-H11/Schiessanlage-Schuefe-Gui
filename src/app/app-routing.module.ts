@@ -1,15 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
-import {SchreiberAComponent} from './schreiberA/schreiber-a.component';
-import {AufsichtComponent} from './aufsicht/aufsicht.component';
-
-
-// const routes: Routes = [
-//   {path: '/', redirectTo: 'schreiber', pathMatch: "full"},
-//   {path: '/schreiber', component: SchreiberAComponent, pathMatch: "full"},
-//   {path: '/aufsicht', component: AufsichtComponent, pathMatch: "full"}
-// ];
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [],

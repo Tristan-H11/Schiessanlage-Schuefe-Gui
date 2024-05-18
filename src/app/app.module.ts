@@ -2,7 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+  UrlMatcher,
+  UrlMatchResult,
+  UrlSegment
+} from "@angular/router";
 import {SchreiberAComponent} from "./schreiberA/schreiber-a.component";
 import {AufsichtComponent} from "./aufsicht/aufsicht.component";
 import {RxStomp} from "@stomp/rx-stomp";
@@ -46,21 +54,16 @@ import {MatSliderModule} from "@angular/material/slider";
     RouterLink,
     RouterModule.forRoot([
       {path: '', redirectTo: 'aufsicht', pathMatch: "full"},
-      {path: 'aufsicht', component: AufsichtComponent, pathMatch: "full"},
 
-      {path: 'deckunga', redirectTo: 'deckungA', pathMatch: "full"},
-      {path: 'deckungb', redirectTo: 'deckungB', pathMatch: "full"},
-      {path: 'deckungc', redirectTo: 'deckungC', pathMatch: "full"},
-      {path: 'deckungA', component: DeckungAComponent, pathMatch: "full"},
-      {path: 'deckungB', component: DeckungBComponent, pathMatch: "full"},
-      {path: 'deckungC', component: DeckungCComponent, pathMatch: "full"},
+      {matcher: caseInsensitiveMatcher('aufsicht'), component: AufsichtComponent},
 
-      {path: 'schreibera', redirectTo: 'schreiberA', pathMatch: "full"},
-      {path: 'schreiberb', redirectTo: 'schreiberB', pathMatch: "full"},
-      {path: 'schreiberc', redirectTo: 'schreiberC', pathMatch: "full"},
-      {path: 'schreiberA', component: SchreiberAComponent, pathMatch: "full"},
-      {path: 'schreiberB', component: SchreiberBComponent, pathMatch: "full"},
-      {path: 'schreiberC', component: SchreiberCComponent, pathMatch: "full"}
+      {matcher: caseInsensitiveMatcher('deckungA'), component: DeckungAComponent},
+      {matcher: caseInsensitiveMatcher('deckungB'), component: DeckungBComponent},
+      {matcher: caseInsensitiveMatcher('deckungC'), component: DeckungCComponent},
+
+      {matcher: caseInsensitiveMatcher('schreiberA'), component: SchreiberAComponent},
+      {matcher: caseInsensitiveMatcher('schreiberB'), component: SchreiberBComponent},
+      {matcher: caseInsensitiveMatcher('schreiberC'), component: SchreiberCComponent}
     ]),
     NoopAnimationsModule,
     MatButtonToggleModule,
@@ -83,3 +86,14 @@ import {MatSliderModule} from "@angular/material/slider";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+function caseInsensitiveMatcher(url: string): UrlMatcher {
+  return (segments: UrlSegment[]): UrlMatchResult | null => {
+    // eslint-disable-next-line @typescript-eslint/typedef
+    const foundSegment = segments.find(segment => segment.path.toLowerCase() === url.toLowerCase());
+    if (foundSegment) {
+      return {consumed: [foundSegment]};
+    }
+    return null;
+  };
+}
