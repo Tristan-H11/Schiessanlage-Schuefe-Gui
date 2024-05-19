@@ -2,6 +2,7 @@
 
 html, body {
   height: 100%;
+  box-sizing: border-box;
 }
 
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -28,7 +29,75 @@ h1 {
 }
 
 .text-subtle {
- background-color: #b0c4dd;
+ background-color: #81a4d5;
 }
 
+.outer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+}
+
+.inner-container {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: stretch;
+  background-color: #2e343e;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  margin: 0.7vw;
+  font-size: 2.5vw;
+}
+
+.treffer-container {
+  min-width: 55%;
+  justify-content: space-evenly;
+  padding: 1vw;
+}
+
+.treffer-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .5vw 1.5vw;
+  margin: .5vw 1.5vw;
+  border-radius: 10px;
+  font-size: 3vw;
+
+  border: 1px solid white;
+}
+
+.closed-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons-schreiber-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-schreiber {
+  background-color: #4c86e6;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 0.5vw;
+  margin: 0.5vw;
+  font-size: 2vw;
+}
+
+.button-schreiber:hover, .button-schreiber:focus {
+  background-color: #4861a3;
+  border-color: transparent;
+}
 
