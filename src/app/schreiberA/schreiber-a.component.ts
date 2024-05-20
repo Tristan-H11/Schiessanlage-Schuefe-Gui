@@ -10,7 +10,7 @@ import {AbstractSchreiber} from "../AbstractSchreiber";
 @Component({
   selector: 'app-schreiber',
   templateUrl: './schreiber-a.component.html',
-  styleUrls: ['./schreiber-a.component.css']
+  styleUrls: ['./schreiber-a.component.scss']
 })
 export class SchreiberAComponent extends AbstractSchreiber implements OnDestroy {
 

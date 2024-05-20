@@ -9,7 +9,7 @@ import {AbstractDeckung} from "../AbstractDeckung";
 @Component({
   selector: 'app-deckung',
   templateUrl: './deckung-a.component.html',
-  styleUrls: ['./deckung-a.component.css']
+  styleUrls: ['./deckung-a.component.scss']
 })
 export class DeckungAComponent extends AbstractDeckung implements OnDestroy {
 

@@ -8,7 +8,7 @@ import {AufsichtDTO} from "../aufsicht-d-t-o";
 @Component({
   selector: 'app-aufsicht',
   templateUrl: './aufsicht.component.html',
-  styleUrls: ['./aufsicht.component.css']
+  styleUrls: ['./aufsicht.component.scss']
 })
 export class AufsichtComponent implements OnDestroy {
   public form: FormGroup = new FormGroup({
