@@ -51,7 +51,6 @@ h1 {
   border-radius: 10px;
   color: white;
   margin: 0.7vw;
-  font-size: 2.5vw;
 }
 
 .treffer-container {
@@ -68,9 +67,12 @@ h1 {
   padding: .5vw 1.5vw;
   margin: .5vw 1.5vw;
   border-radius: 10px;
-  font-size: 3vw;
 
   border: 1px solid white;
+}
+
+.font-size-responsive {
+  font-size: 2.5vw;
 }
 
 .closed-text {
