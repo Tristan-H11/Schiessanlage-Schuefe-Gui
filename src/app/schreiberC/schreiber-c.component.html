@@ -1,12 +1,12 @@
 <div class="outer-container" [ngClass]="getBackgroundColorClass()" *ngIf="stomp.connected()">
-  <div class="inner-container treffer-container">
-    <div *ngIf="isOpen()" class="treffer-div" [ngClass]="getColor('treffer')">
+  <div class="inner-container treffer-container font-size-responsive">
+    <div *ngIf="isOpen()" class="treffer-div font-size-responsive" [ngClass]="getColor('treffer')">
       TREFFER
     </div>
-    <div *ngIf="isOpen()" class="treffer-div" [ngClass]="getColor('grosser')">
+    <div *ngIf="isOpen()" class="treffer-div font-size-responsive" [ngClass]="getColor('grosser')">
       GROßER
     </div>
-    <div *ngIf="isOpen()" class="treffer-div" [ngClass]="getColor('kleiner')">
+    <div *ngIf="isOpen()" class="treffer-div font-size-responsive" [ngClass]="getColor('kleiner')">
       KLEINER
     </div>
     <div *ngIf="isClosedBySchreiber()" class="closed-text">
@@ -17,30 +17,30 @@
     </div>
   </div>
 
-  <div class="inner-container">
+  <div class="inner-container font-size-responsive">
     <p class="m-auto">Bahn <br> <br>
       <span class="badge text-bg-danger">C</span></p>
   </div>
 
-  <div class="inner-container">
+  <div class="inner-container font-size-responsive">
     <p class="m-auto">Zähler: <br> <br>
       <span class="badge text-bg-danger">{{data.counter}}</span></p>
   </div>
 
-  <div class="inner-container buttons-schreiber-container">
+  <div class="inner-container buttons-schreiber-container font-size-responsive">
     <div>
-      <button *ngIf="isOpen()" (click)="close()" class="button-schreiber">
+      <button *ngIf="isOpen()" (click)="close()" class="button-schreiber font-size-responsive">
         Sperren
       </button>
-      <button *ngIf="isClosedBySchreiber()" (click)="open()" class="button-schreiber">
+      <button *ngIf="isClosedBySchreiber()" (click)="open()" class="button-schreiber font-size-responsive">
         Freigeben
       </button>
     </div>
     <div>
-      <button *ngIf="!data.alert" (click)="alertOn()" class="button-schreiber">
+      <button *ngIf="!data.alert" (click)="alertOn()" class="button-schreiber font-size-responsive">
         Alarmieren
       </button>
-      <button *ngIf="data.alert" (click)="alertOff()" class="button-schreiber">
+      <button *ngIf="data.alert" (click)="alertOff()" class="button-schreiber font-size-responsive">
         Alarm stoppen
       </button>
     </div>

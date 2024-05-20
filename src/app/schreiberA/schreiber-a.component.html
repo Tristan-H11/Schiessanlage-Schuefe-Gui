@@ -29,18 +29,18 @@
 
   <div class="inner-container buttons-schreiber-container font-size-responsive">
     <div>
-      <button *ngIf="isOpen()" (click)="close()" class="button-schreiber">
+      <button *ngIf="isOpen()" (click)="close()" class="button-schreiber font-size-responsive">
         Sperren
       </button>
-      <button *ngIf="isClosedBySchreiber()" (click)="open()" class="button-schreiber">
+      <button *ngIf="isClosedBySchreiber()" (click)="open()" class="button-schreiber font-size-responsive">
         Freigeben
       </button>
     </div>
     <div>
-      <button *ngIf="!data.alert" (click)="alertOn()" class="button-schreiber">
+      <button *ngIf="!data.alert" (click)="alertOn()" class="button-schreiber font-size-responsive">
         Alarmieren
       </button>
-      <button *ngIf="data.alert" (click)="alertOff()" class="button-schreiber">
+      <button *ngIf="data.alert" (click)="alertOff()" class="button-schreiber font-size-responsive">
         Alarm stoppen
       </button>
     </div>
