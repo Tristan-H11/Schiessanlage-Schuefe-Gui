@@ -1,5 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
+$mobile-max-width: 768px;
+
+@mixin responsive-flex-direction() {
+  @media (max-width: $mobile-max-width) {
+    flex-direction: column;
+  }
+  @media (min-width: $mobile-max-width) {
+    flex-direction: row;
+  }
+}
+
+@mixin responsive-padding-size($amount) {
+  @media (max-width: $mobile-max-width) {
+    padding: #{$amount}vh;
+  }
+  @media (min-width: $mobile-max-width) {
+    padding: #{$amount}vw;
+  }
+}
+
+@mixin responsive-margin-size($amount) {
+  @media (max-width: $mobile-max-width) {
+    margin: #{$amount}vh;
+  }
+  @media (min-width: $mobile-max-width) {
+    margin: #{$amount}vw;
+  }
+}
+
 html, body {
   height: 100%;
   box-sizing: border-box;
@@ -34,7 +63,9 @@ h1 {
 
 .outer-container {
   display: flex;
-  flex-direction: row;
+
+  @include responsive-flex-direction();
+
   align-items: stretch;
   height: 100vh;
   width: 100vw;
@@ -44,35 +75,60 @@ h1 {
 .inner-container {
   display: flex;
   flex: 1;
+
+  @include responsive-flex-direction();
+  @include responsive-margin-size(0.7);
+
   justify-content: space-around;
   align-items: stretch;
   background-color: #2e343e;
   text-align: center;
   border-radius: 10px;
   color: white;
-  margin: 0.7vw;
 }
 
 .treffer-container {
-  min-width: 55%;
+
+  @media (max-width: $mobile-max-width) {
+    min-height: 35%;
+  }
+  @media (min-width: $mobile-max-width) {
+    min-width: 55%;
+  }
+
+  @include responsive-padding-size(1);
+
   justify-content: space-evenly;
-  padding: 1vw;
 }
 
 .treffer-div {
   display: flex;
-  flex-direction: column;
+
+  @media (max-width: $mobile-max-width) {
+    flex-direction: column;
+    padding: 2.5vh 1.5vh;
+    margin: .5vh 1.5vh;
+  }
+  @media (min-width: $mobile-max-width) {
+    flex-direction: row;
+    padding: .5vw 1.5vw;
+    margin: .5vw 1.5vw;
+  }
+
   justify-content: center;
   align-items: center;
-  padding: .5vw 1.5vw;
-  margin: .5vw 1.5vw;
   border-radius: 10px;
 
   border: 1px solid white;
 }
 
 .font-size-responsive {
-  font-size: 2.5vw;
+  @media (max-width: $mobile-max-width) {
+    font-size: 4vh;
+  }
+  @media (min-width: $mobile-max-width) {
+    font-size: 2.5vw;
+  }
 }
 
 .closed-text {
@@ -86,6 +142,8 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @include responsive-padding-size(1);
 }
 
 .button-schreiber {
@@ -93,9 +151,19 @@ h1 {
   color: white;
   border: 1px solid white;
   border-radius: 10px;
-  padding: 0.5vw;
-  margin: 0.5vw;
-  font-size: 2vw;
+
+  @media (max-width: $mobile-max-width) {
+    flex-direction: column;
+    padding: 2.5vh 1.5vh;
+    margin: .5vh 1.5vh;
+  }
+  @media (min-width: $mobile-max-width) {
+    flex-direction: column;
+    padding: .5vw 1.5vw;
+    margin: .5vw 1.5vw;
+  }
+
+  cursor: pointer;
 }
 
 .button-schreiber:hover, .button-schreiber:focus {
