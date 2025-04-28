@@ -1,5 +1,5 @@
 export const environment: { wsUrl: string} = {
-  wsUrl: 'wss://nsg-server.tristan-hoermann.de/ws',
+  wsUrl: 'wss://nsg-server.v2202504251806333416.bestsrv.de/ws',
 };
 
 export class env {
